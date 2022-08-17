@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Graphical Password Authentication</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+      <script rel="stylesheet" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  </head>
+<body >
+ <style>
+    * { margin: 0; padding: 0; }
+     body{font-family:Gill Sans Ultra Bold}
+
+ </style>
+    <section class="hero is-fullheight" style="background-image: linear-gradient(#C3C9F2,white);" >
+
+        <div class="hero-head">
+            <nav class="navbar navbar-expand-lg" style="box-shadow: 1px 2px 1px whitesmoke;height: auto !important;">
+                <div class="container">
+                        <div class="navbar-end" class="navbar-item px-5"
+                        style="font-size:20px;text-decoration:none; margin-left: 50px; margin-top: 8px;">
+                            Team : Neural Archive
+                        </div>
+                        <div class="navbar-end">
+                            <a href="{{ url_for('main.index') }}" class="navbar-item px-5"
+                               style="font-size:20px;text-decoration:none;">
+                                Home
+                            </a>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('main.profile') }}" class="navbar-item px-5"
+                               style="font-size:20px;text-decoration:none;">
+                                Profile
+                            </a>
+                            {% endif %}
+                            {% if not current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.login') }}" class="navbar-item  px-5"
+                               style="font-size:20px;text-decoration:none;">
+                                Login
+                            </a>
+                            <a href="{{ url_for('auth.signup') }}" class="navbar-item px-5"
+                               style="font-size:20px;text-decoration:none;">
+                                Sign Up
+                            </a>
+                            {% endif %}
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.logout') }}" class="navbar-item  px-5"
+                               style="font-size:20px;text-decoration:none;">
+                                Logout
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body" >
+            <div class="container has-text-centered" style="font-size: medium">
+               {% block content %}
+               {% endblock %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

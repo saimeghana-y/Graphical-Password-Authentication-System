@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="notification is-danger">
+    {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+</div>
+{% endif %}
+{% endwith %}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya">
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type="radio1"]').click(function () {
+            var inputValue = $(this).attr("value");
+            var targetBox = $("." + inputValue);
+            $(".selectt").not(targetBox).hide();
+            $(targetBox).show();
+            $(".img-sys").hide();
+        });
+    });
+</script>
+
+<style>
+    .form-group {
+        border-radius: 10px;
+        border: 2px solid lightseagreen;
+        padding: 2px;
+    }
+
+    .lab {
+        font-weight: bold;
+    }
+
+    /* CSS */
+    .button-17 {
+        align-items: center;
+        appearance: none;
+        background-color: #fff;
+        border-radius: 40px;
+        border-style: none;
+        box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+        box-sizing: border-box;
+        color: #3c4043;
+        cursor: pointer;
+        display: inline-flex;
+        fill: currentcolor;
+        font-family: "Google Sans", Roboto, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        height: 48px;
+        justify-content: center;
+        letter-spacing: .25px;
+        line-height: normal;
+        max-width: 100%;
+        overflow: visible;
+        padding: 40px 30px;
+        position: relative;
+        text-align: center;
+        text-transform: none;
+        transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        width: auto;
+        will-change: transform, opacity;
+        z-index: 0;
+    }
+
+    .button-17:hover {
+        background: #F6F9FE;
+        color: #174ea6;
+    }
+
+    .button-17:active {
+        box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+        outline: none;
+    }
+
+    .button-17:focus {
+        outline: none;
+        border: 2px solid #4285f4;
+    }
+
+    .button-17:not(:disabled) {
+        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+    }
+
+    .button-17:not(:disabled):hover {
+        box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+    }
+
+    .button-17:not(:disabled):focus {
+        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+    }
+
+    .button-17:not(:disabled):active {
+        box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+    }
+
+    .button-17:disabled {
+        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+    }
+</style>
+<div class="row">
+<div class=" selectt" style="font-size:35px;color: black; " ;>
+    <p style="margin-top: -60px; font-weight: bold; font-family: 'Alegreya', serif; margin-left: 580px;">Choose a
+        Password type to Sign Up</p>
+</div>
+
+
+<img class="img-sys" src="/static/login.png" alt="computer" width="400" height="300" style="margin-left: -1000px;">
+
+
+<div class="row column is-14" style="margin-top: 50px; ">
+    <div class="center selectt is-offset-4">
+        <label class="button-17" style="font-size:20px; font-family: 'Alegreya', serif;"><input type="radio1"
+                name="radio" value="gp_1" style="display: none">Image
+            based Graphical Password</label>
+        <br><br><br><br><br>
+        <label class="button-17" style="font-size:20px; font-family: 'Alegreya', serif;"><input type="radio1"
+                name="radio" value="gp_2" style="display: none">Position
+            based Graphical Password</label>
+    </div>
+
+    <div class="column gp_1 selectt gp_2 selectt" style="margin:0;float: left;display: none">
+        <label class="button-17" style="font-size:20px; font-family: 'Alegreya', serif;"><input type="radio1"
+                name="radio" value="gp_1" style="display: none">Image
+            based Graphical Password</label>
+        <br><br><br><br><br>
+        <label class="button-17" style="font-size:20px; font-family: 'Alegreya', serif;"><input type="radio1"
+                name="radio" value="gp_2" style="display: none">Position
+            based Graphical Password</label>
+    </div>
+</div>
+
+<div class="gp_1 selectt" style="display: none">
+    <div class="column is-5 is-offset-6">
+        <div class="box" style="box-shadow: 2px 5px 25px  dimgray;float: right; width: 550px;">
+            <h3 class="title" style="color: lightseagreen; text-shadow: 2px 5px 20px  gainsboro;">Sign Up</h3>
+            <form method="POST" action="/signup">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="email" name="email" placeholder="Email" autofocus=""
+                            required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lab">P A S S W O R D</label>
+
+                    {% include 'graphical_password_1.html' %}
+
+                    <h5 style="color: red;font-size: 15px;">NOTE: Password must be minimum 4 selections</h5>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="gp_2 selectt" style="display: none">
+    <div class="column is-5 is-offset-6">
+        <div class="box" style="box-shadow: 2px 5px 25px  dimgray;float: right; width: 550px;">
+            <h3 class="title" style="color: lightseagreen;">Sign Up</h3>
+            <form method="POST" action="/signup">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="email" name="email" placeholder="Email" autofocus=""
+                            required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lab">P A S S W O R D</label>
+
+                    {% include 'graphical_password_2_signup.html' %}
+
+                    <h5 style="color: red;font-size: 15px;">NOTE: Password Should Select 1 for each row</h5>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
